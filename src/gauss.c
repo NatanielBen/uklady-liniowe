@@ -1,4 +1,4 @@
-#include "gauss.h"
+#include "../include/gauss.h"
 
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem

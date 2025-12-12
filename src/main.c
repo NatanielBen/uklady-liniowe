@@ -1,6 +1,6 @@
-#include "gauss.h"
-#include "backsubst.h"
-#include "mat_io.h"
+#include "../include/gauss.h"
+#include "../include/backsubst.h"
+#include "../include/mat_io.h"
 #include <stdlib.h>
 #include <stdio.h>
 

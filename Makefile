@@ -1,18 +1,23 @@
-CC = gcc
+CC = cc
+SRC_DIR = ./src
+BUILD_DIR = ./build
+BIN_DIR = ./bin
+# get all src files
+SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+# convert ./src prefix to ./build
+OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_FILES))
+EXECUTABLE = $(BIN_DIR)/app
 
-CFLAGS = -Wall -g -Iinclude
+# Targets
+all: $(EXECUTABLE)
 
-# Lista plików źródłowych ze wskazaną ścieżką src/
-SRCS = src/mat_io.c src/main.c src/gauss.c src/backsubst.c
+$(EXECUTABLE): $(OBJ_FILES)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $^ -o $@
 
-# Nazwa pliku wynikowego
-TARGET = gauss
-
-all: $(TARGET)
-
-$(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)
+	$(CC) -c $< -o $@ -g
 
 clean:
-# Usuwa plik wykonywalny (Linux/Mac: rm, Windows z GitBash: rm też zadziała)
-	rm -f $(TARGET)
+	rm -rf $(BUILD_DIR)/*.o $(EXECUTABLE)

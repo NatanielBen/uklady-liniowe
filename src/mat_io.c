@@ -1,4 +1,4 @@
-#include "mat_io.h"
+#include "../include/mat_io.h"
 #include <stdio.h>
 #include <stdlib.h>
 
