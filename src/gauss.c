@@ -7,13 +7,32 @@
 int eliminate(Matrix *mat, Matrix *b){
 	int n = mat->r;
 
+	int max= mat->data[0][0];
+	int max_row = 0;
+	for(int i = 0;i<n;i++){
+		if(mat->data[i][0]>max){
+			max = mat->data[i][0];
+			max_row = i;
+		}
+	}
+	if(max_row != 0){
+		for(int j = 0;j<n;j++){
+			double temp = mat->data[0][j];
+			mat->data[0][j] = mat->data[max_row][j];
+			mat->data [max_row][j] = temp;
+		}
+		double temp_b = b->data[0][0];
+		b->data[0][0] = b->data[max_row][0];
+		b->data[max_row][0] = temp_b;
+	}
+
 	for(int k = 0;k < mat->r -1;k++){
 		double pivot = mat->data[k][k];
 	if(pivot == 0){
 		return 1;
 	}
 	else{
-				for(int i = k+1;i<n;i++){
+			for(int i = k+1;i<n;i++){
 			double wspolczynnik = mat->data[i][k] / pivot;
 
 			for(int j = k;j<n;j++){
