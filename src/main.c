@@ -18,7 +18,7 @@ int main(int argc, char ** argv) {
 
 	res = eliminate(A,b);
 	if(res != 0){
-		fprintf(stderr,'Blad Macierz osobliwa-dzielenie przez 0.\n');
+		fprintf(stderr,"Blad Macierz osobliwa-dzielenie przez 0.\n");
 		freeMatrix(A);
 		freeMatrix(b);
 		return 1;
@@ -32,7 +32,6 @@ int main(int argc, char ** argv) {
 	} else {
 					fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
 	}
-
 	freeMatrix(A);
 	freeMatrix(b);
 
