@@ -17,11 +17,17 @@ int main(int argc, char ** argv) {
 	printToScreen(b);
 
 	res = eliminate(A,b);
-	if(res != 0){
+	if(res == 1){
 		fprintf(stderr,"Blad Macierz osobliwa-dzielenie przez 0.\n");
 		freeMatrix(A);
 		freeMatrix(b);
 		return 1;
+	}
+	else if(res == 2){
+		fprintf(stderr,"Blad nieprawidlowych rozmiarow macierzy.\n");
+		freeMatrix(A);
+		freeMatrix(b);
+		return 2;
 	}
 	x = createMatrix(b->r, 1);
 	if (x != NULL) {

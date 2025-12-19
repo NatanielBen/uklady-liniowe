@@ -3,35 +3,40 @@
 /**
  * Zwraca 0 - elimnacja zakonczona sukcesem
  * Zwraca 1 - macierz osobliwa - dzielenie przez 0
+ * Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy
  */
 int eliminate(Matrix *mat, Matrix *b){
 	int n = mat->r;
 
-double max = mat->data[0][0]; 
-int max_row = 0;
-
-int i = 0; 
-while(i < n) {
-	if(mat->data[i][0] > max){
-			max = mat->data[i][0];
-			max_row = i;
-	}
-	i++; 
-}
-
-if(max_row != 0){
-	int j = 0; 
-	while(j < n) {
-			double temp = mat->data[0][j];
-			mat->data[0][j] = mat->data[max_row][j];
-			mat->data[max_row][j] = temp;
-			j++; 
+	if(n != mat->c || n != b->r || b->c != 1){
+		return 2; 
 	}
 	
-	double temp_b = b->data[0][0];
-	b->data[0][0] = b->data[max_row][0];
-	b->data[max_row][0] = temp_b;
-}
+	double max = mat->data[0][0]; 
+	int max_row = 0;
+
+	int i = 0; 
+	while(i < n) {
+		if(mat->data[i][0] > max){
+				max = mat->data[i][0];
+				max_row = i;
+		}
+		i++; 
+	}
+
+	if(max_row != 0){
+		int j = 0; 
+		while(j < n) {
+				double temp = mat->data[0][j];
+				mat->data[0][j] = mat->data[max_row][j];
+				mat->data[max_row][j] = temp;
+				j++; 
+		}
+		
+		double temp_b = b->data[0][0];
+		b->data[0][0] = b->data[max_row][0];
+		b->data[max_row][0] = temp_b;
+	}
 
 	for(int k = 0;k < mat->r -1;k++){
 		double pivot = mat->data[k][k];
