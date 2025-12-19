@@ -40,22 +40,23 @@ int eliminate(Matrix *mat, Matrix *b){
 
 	for(int k = 0;k < mat->r -1;k++){
 		double pivot = mat->data[k][k];
-	if(pivot == 0){
-		return 1;
-	}
-	else{
-			for(int i = k+1;i<n;i++){
-			double wspolczynnik = mat->data[i][k] / pivot;
+		if(pivot == 0){
+			return 1;
+		}
+		else{
+				for(int i = k+1;i<n;i++){
+					double wspolczynnik = mat->data[i][k] / pivot;
 
-			for(int j = k;j<n;j++){
-				mat->data[i][j] -= wspolczynnik *mat->data[k][j];
+					for(int j = k;j<n;j++){
+						mat->data[i][j] -= wspolczynnik *mat->data[k][j];
+					}
+
+					b->data[i][0] -= wspolczynnik * b->data[k][0];
 			}
-			b->data[i][0] -= wspolczynnik * b->data[k][0];
 		}
 	}
-		}
-		return 0;
-	}
+	return 0;
+}
 
 
 
