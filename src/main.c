@@ -34,7 +34,7 @@ int main(int argc, char ** argv) {
 	if (x != NULL) {
 		res = backsubst(x,A,b);
 	if (res == 1) {
-    printf(stderr, "blad dzielenie przez 0)\n");
+    fprintf(stderr, "Blad Macierz osobliwa-dzielenie przez 0.\n");
     } 
   else if (res == 2) {
     fprintf(stderr, "blad nieprawidlowe rozmiary macierzy\n");
