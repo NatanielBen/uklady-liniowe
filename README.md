@@ -1,4 +1,7 @@
-Uwagi do prowadzadzących do testow:
+Uwagi do prowadzadzących:
+(W pull request widac usuniete galezie)
+
+do testow:
 Test 1 - Dla poprawnych danych oczekiwany wynik x0=1 x1=2 x2=3
 Korzystamy z plików test1_A oraz test1_b
 
