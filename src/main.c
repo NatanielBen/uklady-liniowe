@@ -30,14 +30,24 @@ int main(int argc, char ** argv) {
 		return 2;
 	}
 	x = createMatrix(b->r, 1);
+
 	if (x != NULL) {
 		res = backsubst(x,A,b);
-
-		printToScreen(x);
-	  freeMatrix(x);
-	} else {
-					fprintf(stderr,"Błąd! Nie mogłem utworzyć wektora wynikowego x.\n");
-	}
+	if (res == 1) {
+    printf(stderr, "blad dzielenie przez 0)\n");
+    } 
+  else if (res == 2) {
+    fprintf(stderr, "blad nieprawidlowe rozmiary macierzy\n");
+    } 
+  else {
+    printToScreen(x);
+    }
+        
+    freeMatrix(x);
+    } else {
+        fprintf(stderr,"błąd nie mogłem utworzyć wektora wynikowego x.\n");
+    }
+	
 	freeMatrix(A);
 	freeMatrix(b);
 
